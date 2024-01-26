@@ -8,6 +8,13 @@ const port = 3000,
     httpStatus = require("http-status-codes"),
     app = http.createServer();
 
+const responseMessage = {
+    "/info" : "<h1>We are here to learn javaScript</h1>",
+    "/contact" : "<h1>Come visit us in Durham, NC</h>",
+    "/about" : "<h1>Learn More About Us</h1>",
+    "/hello" : "<h1>Say hello by emailing us here</h1>",
+    "/error" : "<h1>Sorry, the page you are looking for is not here</h1>"
+};
 app.on("request", (reqListner, resListner) => {
     var body = [];
     reqListner.on("data", (chk) => {
@@ -21,8 +28,11 @@ app.on("request", (reqListner, resListner) => {
         "Content-Type": "text/html"
     });
 
-    let responseMessage = "<h1>This will show on the screen.</h1>";
-    resListner.end(responseMessage);
+    if (responseMessage[reqListner.url]) {
+        resListner.end(responseMessage[reqListner.url])
+    } else {
+        resListner.end("<h1>Home</h1>");
+    }
 });
 
 app.listen(port);

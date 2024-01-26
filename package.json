@@ -2,7 +2,7 @@
   "name": "second_server",
   "version": "1.0.0",
   "description": "second server implementation with node.js",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
